@@ -1,18 +1,113 @@
-ApplyPilot Job Finder — Results & Resume Switching Update
+# ApplyPilot — Resume-Based Job Discovery & Application Tracker
 
-WHAT CHANGED
-- Search now checks up to three Himalayas result pages per selected role (when the API has more pages).
-- The role selector defaults to a broader set of analyst roles, including Product Analyst, rather than silently limiting searches to only the first few saved roles.
-- Resume text and target roles are separate: upload a new resume in Resume & preferences, then click Save resume details and preferences. Select desired job titles in Find jobs.
-- Jobs marked as applied are hidden from Matching jobs by default. Turn on "Show jobs already marked as applied" to see them again.
-- Marking a job as applied now immediately removes it from the default results list.
+ApplyPilot is a Python-based job discovery and application tracking application designed to help job seekers discover relevant opportunities, prioritize jobs based on resume relevance, and manage their job search workflow efficiently.
 
-UPGRADE WITHOUT LOSING YOUR DATA
-1. Stop ApplyPilot by closing its terminal window.
-2. Make a backup copy of your existing ApplyPilot_JobFinder folder.
-3. Extract this ZIP into your existing ApplyPilot_JobFinder folder and allow app.py and applypilot_core.py to be replaced.
-4. Do NOT delete the data folder. It contains your saved profile and job database.
-5. Run RUN_APPLYPILOT.bat again.
+Built using Python, Streamlit, and SQLite, ApplyPilot searches selected public job sources, filters recent listings, calculates heuristic resume-match scores, and provides direct links to original job postings.
 
-LIMITATIONS
-This searches selected public APIs and cannot guarantee 30–40 results every time. Availability depends on what sources return for your roles, date range, and locations. LinkedIn, Unstop, and Wellfound remain quick-search links in this build rather than automatic imports.
+**Status:** In Progress
+
+## Features
+
+- **Resume Management:** Upload resumes in PDF, DOCX, or TXT format and extract text for review.
+- **Personalized Job Search:** Configure target roles, skills, preferred locations, and relevant experience.
+- **Job Discovery:** Retrieve listings from selected public job sources, including Himalayas, Remotive, and Arbeitnow.
+- **Resume-Based Matching:** Score listings using target job roles and relevant skills.
+- **Advanced Filtering:** Filter opportunities by role, location, posting date, and minimum match score.
+- **Duplicate Prevention:** Avoid importing duplicate listings based on application URLs.
+- **Application Tracking:** Manually mark jobs as applied and maintain a history of job discovery and status changes.
+- **Interactive Dashboard:** Manage resumes, search jobs, review matching opportunities, and track application activity through Streamlit.
+- **Local Storage:** Store job listings in SQLite and profile preferences in JSON files.
+- **External Job Board Search:** Access quick-search links for Unstop and Wellfound.
+
+## Tech Stack
+
+- Python
+- Streamlit
+- SQLite
+- Pandas
+- Requests
+- Feedparser
+- pypdf
+- python-docx
+
+## Project Structure
+
+```text
+ApplyPilot/
+├── app.py
+├── applypilot_core.py
+├── requirements.txt
+├── README.md
+├── RUN_APPLYPILOT.bat
+└── data/
+    ├── applypilot.db
+    └── profile.json
+```
+
+The `data/` directory and its files are generated locally as the application saves information.
+
+## Installation
+
+### Prerequisites
+
+- Python 3.10 or a compatible newer version
+- pip
+- Internet connection for retrieving job listings
+
+Open the local URL provided by Streamlit, usually `http://localhost:8501`.
+
+## How to Use
+
+1. Open the Resume & Preferences tab.
+2. Upload your resume and review the extracted text.
+3. Configure your target roles, skills, and preferred locations.
+4. Save your profile and preferences.
+5. Navigate to Find Jobs and select the roles, date range, locations, and sources you want to search.
+6. Set the minimum resume-match score and start the search.
+7. Review matching listings, job details, and detected skills.
+8. Open the original job listing to review the opportunity and apply manually.
+9. Mark jobs as applied to organize your search and hide completed applications from the default results.
+10. Use Search History to review recorded activity.
+
+## Matching Methodology
+
+ApplyPilot calculates a heuristic relevance score using factors such as:
+
+- Target job role relevance
+- Skills detected in the job listing and saved resume
+- Entry-level and junior role indicators
+- Location-related keywords
+
+The score helps prioritize listings but is not a probability of selection or a guarantee of suitability.
+
+## Privacy & Responsible Automation
+
+- Resume text and profile details are stored locally by the application.
+- Job listings are retrieved from selected public sources.
+- Applications are submitted manually through the original job websites.
+- ApplyPilot does not automatically submit job applications.
+- Private resumes, profile files, databases, credentials, and other sensitive information should not be committed to a public repository.
+
+## Current Limitations
+
+- Job discovery is limited to the selected public sources.
+- Unstop and Wellfound are quick-search links and are not automatically imported in the current implementation.
+- Listing availability, posting dates, and location information depend on the source data.
+- Listings with unverifiable posting dates or certain location mismatches may be excluded.
+- Matching uses rule-based scoring rather than a trained machine-learning model.
+- Results vary depending on selected roles, locations, date ranges, and source availability.
+
+## Future Enhancements
+
+- Semantic matching between resumes and job descriptions.
+- Additional authorized job-source integrations.
+- Customizable matching weights and relevance criteria.
+- Application deadlines, reminders, and follow-up management.
+- Analytics for application activity and job-search progress.
+- Automated tests and enhanced error handling.
+
+## Project Objective
+
+ApplyPilot aims to simplify job discovery by combining relevant job listings, resume-based matching, filtering, and application tracking in one interface.
+
+The project demonstrates practical software development and product-oriented problem-solving through workflow design, feature prioritization, relevance scoring, usability, and responsible automation.
